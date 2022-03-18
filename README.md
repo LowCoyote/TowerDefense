@@ -9,7 +9,7 @@ More on [Wikipedia](https://en.wikipedia.org/wiki/Tower_defense).
 # Why ?
 Because I want to improve my knowledge of ThreeJS, I watched some videos about it and now I start my own project to understand how it works.
 
-# What technologie to you use ?
+# What technologie do you use ?
 I use [ViteJs](https://vitejs.dev/) and [ThreeJS](https://threejs.org/) of course.
 
 # Credit
