@@ -30,7 +30,7 @@ export let map1_data = {
     ]
 };
 
-export function loadMap(mapdata, scene){
+export function loadMap(mapdata, scene, clickableObjs){
     let size_Y = mapdata.data.length;
     let size_X = mapdata.data[0].length;
 
@@ -57,7 +57,10 @@ export function loadMap(mapdata, scene){
                     let bloc = basic_cube.clone();
                     bloc.position.set(posix, 0, posy);
                     scene.add(bloc);
-                break;
+
+                    // This element can be a RayCaster target
+                    clickableObjs.push(bloc);
+                    break;
 
                 case 1:
                     let block = road_cube.clone();
