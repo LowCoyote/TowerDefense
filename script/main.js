@@ -1,7 +1,7 @@
-import './style.css';
+import '../style/style.css';
 import * as THREE from 'three';
 import { MapControls } from 'three/examples/jsm/controls/OrbitControls';
-import {map0_data , loadMap } from './map.js';
+import {map0_data, map1_data , loadMap } from './map.js';
 
 
 // variables
@@ -46,6 +46,7 @@ function init()
     let directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
     directionalLight.position.set(-1, 0.9, 0.4);
     scene.add(directionalLight);
+
 
     loadMap(map0_data, scene);
 

@@ -2,11 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="image/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TowerDefense</title>
+    <link href="style/output.css" rel="stylesheet">
   </head>
-  <body>
-    <script type="module" src="/main.js"></script>
+  <body class="relative inline-block overflow-hidden">
+  <div class="absolute left-4 top-4"><button id="myBtn" onclick="modal()"><img src='image/menu-arrondi.svg' alt=''></button></div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1 class="text-center text-[35px]">Choose you're level :</h1>
+        <div class="grid grid-flow-col auto-cols-max text-center mt-[30px] content-center justify-center">
+          <button class="bg-sky-500 ml-[50px] mb-[30px] rounded-lg pl-[50px] pr-[50px] pt-[20px] pb-[20px] text-[30px]">Level 1</button>
+          <button class="bg-sky-500 ml-[50px] mb-[30px] rounded-lg pl-[50px] pr-[50px] pt-[20px] pb-[20px] text-[30px]">Level 2</button>
+          <button class="bg-sky-500 ml-[50px] mb-[30px] rounded-lg pl-[50px] pr-[50px] pt-[20px] pb-[20px] text-[30px]">Level 3</button>
+          <button class="bg-sky-500 ml-[50px] mb-[30px] rounded-lg pl-[50px] pr-[50px] pt-[20px] pb-[20px] text-[30px]">Level 4</button>
+        </div>
+      </div>
+    </div>
+  <script type="module" src="/script/main.js"></script>
+  <script>
+    function modal(){
+      // Get the modal
+      let modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      let btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      let span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    }
+  </script>
   </body>
 </html>
