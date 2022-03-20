@@ -73,7 +73,7 @@ function init()
 
     //cursor
     const cursor_material = new THREE.MeshLambertMaterial({transparent : true, opacity : 0 , color : 0xc0392b});
-    const cursor_geometry = new THREE.BoxGeometry(0.5, 4, 0.5);
+    const cursor_geometry = new THREE.BoxGeometry(1.9, 2.5, 1.9);
     cursor_cube = new THREE.Mesh(cursor_geometry, cursor_material);
     scene.add(cursor_cube);
 

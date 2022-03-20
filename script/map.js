@@ -2,16 +2,16 @@ import * as THREE from 'three';
 
 export let map0_data = {
     "data" : [
-        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-        [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 1, 1, 1, 1, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+        [0, 1, 2, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 2, 2, 2, 2, 2, 2, 0, 0],
+        [0, 1, 1, 1, 1, 1, 1, 1, 2, 0],
+        [0, 2, 2, 2, 2, 2, 2, 1, 2, 0],
+        [0, 2, 2, 2, 2, 2, 2, 1, 2, 0],
+        [0, 2, 1, 1, 1, 1, 1, 1, 2, 0],
+        [0, 2, 1, 2, 2, 2, 2, 0, 2, 0],
+        [0, 2, 1, 2, 2, 2, 2, 0, 2, 0],
+        [0, 2, 1, 1, 1, 1, 1, 1, 1, 0],
+        [0, 0, 2, 2, 2, 2, 2, 0, 1, 0]
     ]
 };
 
@@ -59,8 +59,17 @@ export function loadMap(mapdata, scene, clickableObjs){
                     scene.add(bloc);
 
                     // This element can be a RayCaster target
-                    clickableObjs.push(bloc);
-                    break;
+                    //clickableObjs.push(bloc);
+                break;
+
+                case 2:
+                    let blocc = basic_cube.clone();
+                    blocc.position.set(posix, 0, posy);
+                    scene.add(blocc);
+
+                    // This element can be a RayCaster target
+                    clickableObjs.push(blocc);
+                break;
 
                 case 1:
                     let block = road_cube.clone();
