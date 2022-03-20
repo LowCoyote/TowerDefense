@@ -18,7 +18,9 @@ let mtlLoader;
 
 export let number = 0;
 let cursor_cube = undefined;
+//3d items
 let tree = undefined;
+let grass = undefined;
 
 let raycaster;
 let mouse = new THREE.Vector2();
