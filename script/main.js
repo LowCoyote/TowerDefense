@@ -1,8 +1,7 @@
 import '../style/style.css';
 import * as THREE from 'three';
 import { MapControls } from 'three/examples/jsm/controls/OrbitControls';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {map0_data, map1_data , loadMap } from './map.js';
 
 
@@ -18,9 +17,6 @@ let mtlLoader;
 
 export let number = 0;
 let cursor_cube = undefined;
-//3d items
-let tree = undefined;
-let grass = undefined;
 
 let raycaster;
 let mouse = new THREE.Vector2();
@@ -31,8 +27,8 @@ function init()
     clock = new THREE.Clock();
     scene = new THREE.Scene();
     raycaster = new THREE.Raycaster();
-    objLoader = new OBJLoader();
-    mtlLoader = new MTLLoader();
+    const loader = new GLTFLoader();
+    scene.add(new THREE.AxesHelper(5))
 
     //renderer
     renderer = new THREE.WebGLRenderer({antialias : true, alpha : true});
@@ -57,25 +53,25 @@ function init()
     controls.maxDistance = 20;
     controls.maxPolarAngle = Math.PI/2;
 
-    //decoration (tree)
-    mtlLoader.load("../model/basic_tree.mtl", function(materials) {
-        materials.preload();
-        objLoader.setMaterials(materials);
-        objLoader.load("../model/basic_tree.obj", function (object) {
-            object.position.x = 3.5;
-            object.position.z = 3;
-            object.position.y = 0.1;
-            object.lookAt(5, 0, 0);
-            tree = object;
-            scene.add(tree);
-        });
-    });
-
     //cursor
-    const cursor_material = new THREE.MeshLambertMaterial({transparent : true, opacity : 0 , color : 0xc0392b});
-    const cursor_geometry = new THREE.BoxGeometry(1.9, 2.5, 1.9);
-    cursor_cube = new THREE.Mesh(cursor_geometry, cursor_material);
-    scene.add(cursor_cube);
+    // const cursor_material = new THREE.MeshLambertMaterial({transparent : true, opacity : 0 , color : 0xc0392b});
+    // const cursor_geometry = new THREE.BoxGeometry(1.9, 2.5, 1.9);
+    // cursor_cube = new THREE.Mesh(cursor_geometry, cursor_material);
+    // scene.add(cursor_cube);
+
+    loader.load( '../model/cursor.gltf', function ( gltf ) {
+        cursor_cube = gltf.scene;
+        let newMaterial = new THREE.MeshStandardMaterial({color: 0xff0000});
+        cursor_cube.traverse((o) => {
+            if (o.isMesh) o.material = newMaterial;
+        });
+        scene.add( cursor_cube );
+
+    }, undefined, function ( error ) {
+
+        console.error( error );
+
+    } );
 
     //eventListener
     document.addEventListener('pointerdown', onMouseDown, false);
