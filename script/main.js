@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { MapControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {map0_data, map1_data , loadMap } from './map.js';
+import Stats from 'stats.js'
 
 
 // variables
@@ -13,7 +14,8 @@ let clock;
 let controls;
 let objLoader;
 let mtlLoader;
-
+//Stat variable for display fps,ms...
+const stats = new Stats();
 
 export let number = 0;
 let cursor_cube = undefined;
@@ -68,9 +70,7 @@ function init()
         scene.add( cursor_cube );
 
     }, undefined, function ( error ) {
-
         console.error( error );
-
     } );
 
     //eventListener
@@ -106,18 +106,25 @@ function init()
             loadMap(map0_data, scene, clickableObjs);
         break;
     }
-
     render();
 }
 
 function render()
 {
+    stats.begin();
     let delta = clock.getDelta();
     let elapsed = clock.elapsedTime;
 
     controls.update();
     renderer.render(scene, camera);
 
+    stats.setMode(0); // 0: fps, 2: ms
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left  = 'inherit';
+    stats.domElement.style.right  = '10px';
+    document.getElementById('Stats-output').appendChild(stats.domElement);
+
+    stats.end();
     requestAnimationFrame(render);
 }
 function onMouseUp(event)
